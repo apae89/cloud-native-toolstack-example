@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: default
+  application:
+    name: service-3
+  version: '@project.version@'
+
+server:
+  port: 8082
+
+downstream:
+  service:
+    url:

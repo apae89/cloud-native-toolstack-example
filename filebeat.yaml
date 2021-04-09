@@ -1,0 +1,32 @@
+filebeat.inputs:
+
+#  - type: container # This type enables parsing of Container logs
+#    enabled: false
+#    paths:
+#      - '/var/lib/docker/containers/*/*.log'
+#    processors:
+#    - add_docker_metadata: ~ # Enrich Docker logs with useful metadata
+#    - decode_json_fields: # Parse application logs (stdout) as JSON encoded data
+#        fields: [ "message" ]
+#        target: "json"
+#        overwrite_keys: true
+
+  - type: log
+    enabled: true
+    paths:
+      - '/var/log/app/*.log'
+    processors:
+      - add_docker_metadata: ~ # Enrich Docker logs with useful metadata
+      - decode_json_fields: # Parse application logs (stdout) as JSON encoded data
+          fields: [ "message" ]
+          target: "json"
+          overwrite_keys: true
+
+output.elasticsearch:
+  hosts: [ "elk:9200" ]
+  indices:
+    - index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}" # Create an Elastic index on a daily base (makes it easier to remove old logs)
+
+# Configuration related to FileBeat logs
+logging.json: true
+logging.metrics.enabled: false
