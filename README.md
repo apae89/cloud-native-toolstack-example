@@ -11,14 +11,9 @@ toolchain he usually can expect in a microservice environment and use it for loc
 ## How to get started
 Execute the following commands from a command line inside the root directory to get the setup started: 
 
-* Start Elastic Stack and FileBeat 
+* Start Elastic Stack, FileBeat, and Jaeger 
 ```commandline
 docker-compose up
-```
-
-* Start Jaeger 
-```commandline
-docker run --rm -it --name jaeger -p 5775:5775/udp -p 6831:6831/udp -p 6832:6832/udp -p 5778:5778 -p 16686:16686 -p 14268:14268 -p 14250:14250 -p 9411:9411 jaegertracing/all-in-one
 ```
 
 * Start the single services (make sure to run from distinct command lines)
@@ -27,12 +22,18 @@ mvn spring-boot:run -pl service-1
 mvn spring-boot:run -pl service-2
 mvn spring-boot:run -pl service-3
 ```
+### Web interface URLs
+* Jaeger UI: http://localhost:16686/search
+* Kibana: http://localhost:5601
 
-### First steps
-1. After initial start of ELK stack and FileBeat log entries will be ingested into ElasticSearch immediately.
-2. Create an index pattern "filebeat-*" to match all indices created by filebeat, as described [here](https://www.sarulabs.com/post/5/2019-08-12/sending-docker-logs-to-elasticsearch-and-kibana-with-filebeat.html)
-3. Send a GET request to service-1 via Postman or cURL `curl http://localhost:8080/api/hello`
-4. ...
+### What to do next
+1. After initial start of the analysis stacks log entries will be ingested into ElasticSearch immediately.
+2. Send a GET request to service-1 via Postman or cURL `curl http://localhost:8080/api/hello`
+3. Navigate to Kibana UI and create an index pattern "filebeat-*" to match all indices created by filebeat, as 
+   described [here](https://www.sarulabs.com/post/5/2019-08-12/sending-docker-logs-to-elasticsearch-and-kibana-with-filebeat.html).
+4. Explore the web interfaces of Kibana and Jaeger to get a feeling how these tools work
+5. Read the next section to understand what's going on under the hood...
+
 
 
 ## Example setup explained
@@ -48,7 +49,7 @@ understand, the modules consist of the same code but come with different configu
 _// Add Detail explanation_
 Artefacts, ...
 
-### Detail explaning
+### Detail explanation
 tbd
 
 
