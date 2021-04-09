@@ -1,6 +1,6 @@
-# Introduction
+# Introduction (Work in Progress)
 
-This repository contains an minimum example of three cloud-native _Spring Boot_ based microservices communicating with 
+This repository contains a minimum example of three cloud-native _Spring Boot_ based microservices communicating with 
 each other via a 
 REST API including an _Elastic Stack_ with _FileBeat_ for log analysis and _Jaeger_ to collect tracing information.
 
@@ -31,7 +31,7 @@ mvn spring-boot:run -pl service-3
 ### First steps
 1. After initial start of ELK stack and FileBeat log entries will be ingested into ElasticSearch immediately.
 2. Create an index pattern "filebeat-*" to match all indices created by filebeat, as described [here](https://www.sarulabs.com/post/5/2019-08-12/sending-docker-logs-to-elasticsearch-and-kibana-with-filebeat.html)
-3. Send a GET request to service-1 via Postman or cURL 
+3. Send a GET request to service-1 via Postman or cURL `curl http://localhost:8080/api/hello`
 4. ...
 
 
