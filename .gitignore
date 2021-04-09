@@ -23,8 +23,11 @@
 hs_err_pid*
 
 *.iml
-/.idea/
+.idea/
 /target/
 
 .project
-/.idea/
+/*/.mvn/wrapper/
+/*/mvnw
+/*/mvnw.cmd
+/*/target/
