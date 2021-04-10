@@ -12,7 +12,7 @@ services:
       - elk
     volumes:
     - ./filebeat.yaml:/usr/share/filebeat/filebeat.yml:ro
-    - C:/Softwareentwicklung/Workspaces/IntelliJ/Cloud Example Tracing/logs/:/var/log/app/
+    - C:/Softwareentwicklung/Workspaces/IntelliJ/cloud-native-toolstack-example/logs/:/var/log/app/
 
 #  filebeat: # Use this to collect data from services running inside Docker (more difficult to realize when running on Windows)
 #    image: docker.elastic.co/beats/filebeat:7.12.0
@@ -26,6 +26,8 @@ services:
 
   jaeger:
     image: jaegertracing/all-in-one:1.22
+    environment:
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
     ports:
       - 5775:5775/udp
       - 6831:6831/udp

@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
     <property name="LOG_DIR" value="../logs" />
     <!-- Add properties to log output -->
     <springProperty scope="context" name="serviceName" source="spring.application.name"/>
     <springProperty scope="context" name="serviceVersion" source="spring.version"/>
+    <!-- You can override this to have a custom pattern -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+    <!-- Appender to log to console -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        </filter>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
 
     <appender name="jsonRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR}/${serviceName}.log</file>
@@ -23,10 +38,9 @@
 
     <springProfile name="dev | default">
         <!-- Pretty console output for development -->
-        <include resource="org/springframework/boot/logging/logback/defaults.xml" />
-        <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+<!--        <include resource="org/springframework/boot/logging/logback/console-appender.xml" />-->
         <root level="INFO">
-            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="console"/>
             <appender-ref ref="jsonRollingFileAppender"/>
         </root>
     </springProfile>

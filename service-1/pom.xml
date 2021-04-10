@@ -18,6 +18,18 @@
 		<lombok.version>1.18.16</lombok.version>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>2020.0.2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -31,11 +43,11 @@
 			<version>2.4.2</version>
 		</dependency>
 
-		<!-- Provide all required dependencies to instrument a Spring Boot stack with Jaeger -->
+		<!-- Provide all required dependencies to instrument a Spring Boot app with zipkin as Trace reporter -->
 		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-spring-jaeger-web-starter</artifactId>
-			<version>3.3.1</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+			<version>2.2.7.RELEASE</version>
 		</dependency>
 
 		<dependency>
