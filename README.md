@@ -57,10 +57,10 @@ into Elasticsearch (except for the console appender in the dev environment, to m
 In this use case FileBeat is responsible to continuously read and extract log data from a logfile and sending them 
 to Elasticsearch, where it creates the necessary structures (Indices, ...) on first startup as well. Configuration 
 is done via the _filebeat.yaml_, that defines in the `path` attribute where to read the log data from inside the 
-container. In cloud environments log output is usually read from logfiles of the Docker daemon that stores information 
-written to _stdout_ by the running containers, together with some additional information about the containers 
-producing the log output provided by the Docker daemon itself (example configuration can be found out inside 
-the configuration file).
+container. In cloud environments log output is usually read from logfiles that are written by Docker 
+containers that serve as an execution environment for an application, which contains information printed to 
+_stdout_ by the application in execution, together with some additional information about the container itself 
+provided by the Docker daemon (example configuration can be found out inside the configuration file).
 To make the log files written by the services visible to FileBeat, the folder containing the log 
 files is mounted into the container as defined inside the `docker-compose.yaml`. 
 
