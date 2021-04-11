@@ -93,5 +93,5 @@ _application.yml_ is automatically added to the trace data.
 
 ## Known bugs
 * FileBeat stops detecting changes after a while
-* FileBeat injects a timestamp for processing time into Elastic documents even if timestamp exists for time when log 
-  entry was written (probably an issue with timestamp format of log entry) 
+* FileBeat injects a timestamp for the processing time into Elastic documents even if a timestamp exists denoting the 
+  time when the log entry was written (probably an issue with timestamp format of log entry) 
