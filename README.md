@@ -9,11 +9,8 @@ working and how the different tools together. Furthermore, it could be used for 
 toolchain he usually can expect in a microservice environment and use it for local testing.
 
 ## How to get started
-Only a few steps are necessary to get this example running after cloning to your local system.
-
-1. Configure the path to your local clone inside the `docker-compose.yaml` by replacing `<path_to_cloned_repository>`
-
-2. Execute the following commands from a command line inside the root directory to get the setup started: 
+Only a few steps are necessary to get this example running after cloning to your local system. Just execute the 
+following commands from a command line inside the root directory to get the setup started. 
 
 * Start Elastic Stack, FileBeat, and Jaeger 
 ```commandline
@@ -28,12 +25,11 @@ mvn spring-boot:run -Pservice-3
 ```
 
 ### What to do next
-1. After initial start of the analysis stacks log entries will be ingested into ElasticSearch immediately.
-2. Send a GET request to _service-1_ via Postman or cURL `curl http://localhost:8080/api/hello`
-3. Navigate to Kibana UI and create an index pattern "filebeat-*" to match all indices created by filebeat, as 
+1. Send a GET request to _service-1_ via Postman or cURL `curl http://localhost:8080/api/hello`
+2. Navigate to Kibana UI and create an index pattern "filebeat-*" to match all indices created by filebeat, as 
    described [here](https://www.sarulabs.com/post/5/2019-08-12/sending-docker-logs-to-elasticsearch-and-kibana-with-filebeat.html).
-4. Explore the web interfaces of Kibana and Jaeger to get a feeling how these tools work
-5. Read the next section to understand what's going on under the hood...
+3. Explore the web interfaces of Kibana and Jaeger to get a feeling how these tools work
+4. Read the next section to understand what's going on under the hood...
 
 ### Web interface URLs
 * Jaeger UI: http://localhost:16686/search
