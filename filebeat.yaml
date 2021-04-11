@@ -15,8 +15,9 @@ filebeat.inputs:
     enabled: true
     paths:
       - '/var/log/app/*.log'
+    close_inactive: 5m
+    scan_frequency: 10s
     processors:
-      - add_docker_metadata: ~ # Enrich Docker logs with useful metadata
       - decode_json_fields: # Parse application logs (stdout) as JSON encoded data
           fields: [ "message" ]
           target: "json"
@@ -29,4 +30,5 @@ output.elasticsearch:
 
 # Configuration related to FileBeat logs
 logging.json: true
+logging.level: info
 logging.metrics.enabled: false
