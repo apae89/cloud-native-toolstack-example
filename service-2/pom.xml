@@ -11,7 +11,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>8</java.version>
-		<start-class>de.msg.cloud.examples.Application</start-class>
+		<start-class>de.apae89.examples.Application</start-class>
 		<maven.docker.plugin.version>0.34.1</maven.docker.plugin.version>
 		<docker.image.name>${project.artifactId}</docker.image.name>
 		<logstash-logback.version>6.6</logstash-logback.version>
