@@ -2,7 +2,8 @@
 
 This repository contains a minimum example of three cloud-native _Spring Boot_ based microservices communicating with 
 each other via a 
-REST API including an _Elastic Stack_ with _FileBeat_ for log analysis and _Jaeger_ to collect trace information.
+REST API including an _Elastic Stack_ with _FileBeat_ for log analysis and _Jaeger_ to collect and visualize trace 
+information.
 
 The goal is to provide a playground for developers and give a feeling what's required to get such an environment 
 working and how the different tools together. Furthermore, it could be used for development projects to give a developer the 
@@ -65,7 +66,7 @@ provided by the Docker daemon (example configuration can be found out inside the
 To make the log files written by the services visible to FileBeat, the folder containing the log 
 files is mounted into the container as defined inside the `docker-compose.yaml`. 
 
-To add the service name and version to the log output they were explicitly added to the MDC via the Logback 
+To add the service name and version to the log output they are explicitly added to the MDC via the Logback 
 configuration 
 file
 ```xml
