@@ -20,9 +20,9 @@ docker-compose up
 
 * Start the single services (make sure to run from distinct command lines)
 ```commandline
-mvn spring-boot:run -Pservice-1
-mvn spring-boot:run -Pservice-2
-mvn spring-boot:run -Pservice-3
+mvn spring-boot:run -pl service-1
+mvn spring-boot:run -pl service-2
+mvn spring-boot:run -pl service-3
 ```
 
 ### What to do next
