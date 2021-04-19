@@ -15,13 +15,23 @@ filebeat.inputs:
     enabled: true
     paths:
       - '/var/log/app/*.log'
-    close_inactive: 5m
+    close_inactive: 1m
     scan_frequency: 10s
     processors:
       - decode_json_fields: # Parse application logs (stdout) as JSON encoded data
           fields: [ "message" ]
           target: "json"
+          add_error_key: true
           overwrite_keys: true
+      - timestamp:
+          field: "json.@timestamp"
+          ignore_missing: false
+          ignore_failure: false
+          layouts:
+            - '2006-01-02T15:04:05.999-07:00'
+          test:
+            - '2021-04-19T16:57:58.717+02:00'
+            - '2021-04-19T16:58:26.268+02:00'
 
 output.elasticsearch:
   hosts: [ "elk:9200" ]
