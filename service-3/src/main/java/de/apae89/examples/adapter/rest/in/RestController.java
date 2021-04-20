@@ -28,7 +28,7 @@ public class RestController {
     public String hello(@RequestHeader Map<String, String> headers) {
         MDC.put("userId", headers.getOrDefault("userid", ""));
         log.info("Received client request", keyValue("header", headers));
-        if(downstreamService.shouldCallDownstreamService()) {
+        if (downstreamService.shouldCallDownstreamService()) {
             downstreamService.invokeDownstreamService();
         }
         MDC.clear();

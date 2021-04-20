@@ -1,20 +1,24 @@
-package de.apae89.examples.adapter.rest.out;
+package de.apae89.examples.adapter.rest.configuration;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
 import java.util.concurrent.TimeUnit;
 
-@org.springframework.context.annotation.Configuration
+@Configuration
 public class WebClientConfiguration {
-    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
-    public static final int TIMEOUT = 1000;
+    public static final int TIMEOUT = 2000;
 
+    /**
+     * WebClient must be provided as Bean to enable Spring Sleuth instrumenting the client with all configuration
+     * required to enable Tracing automatically.
+     */
     @Bean(name = "downstreamServiceClient")
     public WebClient webClientWithTimeout() {
         final HttpClient httpClient = HttpClient

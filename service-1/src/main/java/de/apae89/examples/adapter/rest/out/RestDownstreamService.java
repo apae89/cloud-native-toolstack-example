@@ -10,12 +10,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.net.URI;
+import java.util.Optional;
 
 import static net.logstash.logback.argument.StructuredArguments.keyValue;
 
 @Slf4j
 @Component
-public class RestDownstreamServiceClient {
+public class RestDownstreamService {
 
     @Value("${downstream.service.url}")
     private String downstreamServiceUrl;
@@ -35,6 +36,7 @@ public class RestDownstreamServiceClient {
                 .retrieve()
                 .toEntity(String.class)
                 .block();
-        log.info("Received response from downstream service: {}", response.getBody());
+        log.info("Received response from downstream service: {}",
+                Optional.ofNullable(response.getBody()).orElse(""));
     }
 }
